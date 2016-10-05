@@ -29,17 +29,17 @@ class ScorerTest extends FlatSpec with Matchers with TestHands {
   }
 
   "handOfAKind" should "find the matching cards" in {
-    assertResult(Map(2 -> Set(2))) { Scorer.handOfAKind(lowPairCards) }
+    assertResult(Map(2 -> Set(2))) { Scorer.handOfAKind(lowPairCards) - 1 }
 
-    assertResult(Map.empty) { Scorer.handOfAKind(lowPairCards.tail) }
+    assertResult(Map.empty) { Scorer.handOfAKind(lowPairCards.tail) - 1 }
 
-    assertResult(Map(2 -> Set(12))) { Scorer.handOfAKind(highPairCards) }
+    assertResult(Map(2 -> Set(12))) { Scorer.handOfAKind(highPairCards) - 1}
 
-    assertResult(Map(2 -> Set(4, 5))) { Scorer.handOfAKind(twoPairCards) }
+    assertResult(Map(2 -> Set(4, 5))) { Scorer.handOfAKind(twoPairCards) - 1 }
 
-    assertResult(Map(4 -> Set(2))) { Scorer.handOfAKind(fourKindCards) }
+    assertResult(Map(4 -> Set(2))) { Scorer.handOfAKind(fourKindCards) - 1 }
 
-    assertResult(Map(3 -> Set(7))) { Scorer.handOfAKind(threeKindCards) }
+    assertResult(Map(3 -> Set(7))) { Scorer.handOfAKind(threeKindCards) - 1 }
   }
 
   "Flush" should "find the matching cards" in {

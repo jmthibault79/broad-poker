@@ -18,3 +18,5 @@ case object HeartSuit   extends Suit { val word = "Heart" }
 case object DiamondSuit extends Suit { val word = "Diamond" }
 case object SpadeSuit   extends Suit { val word = "Spade" }
 case object ClubSuit    extends Suit { val word = "Club" }
+
+case object JokerSuit   extends Suit { val word = "Joker" }

@@ -20,6 +20,7 @@ sealed trait ScoringHand extends Ordered[ScoringHand] {
         case (FullHouse(v31, v21), FullHouse(v32, v22))     => (v31, v21) compare (v32, v22)
         case (FourOfAKind(v1, k1), FourOfAKind(v2, k2))     => (v1, k1) compare (v2, k2)
         case (StraightFlush(v1), StraightFlush(v2))         => v1 compare v2
+        case (FiveOfAKind(v1), FiveOfAKind(v2))             => v1 compare v2
         case _ => compared
       }
     }
@@ -37,4 +38,5 @@ case class FullHouse(trioValue: Int, pairValue: Int)            extends ScoringH
 case class FourOfAKind(value: Int, kicker: Int)                 extends ScoringHand { val ranking = 7 }
 case class StraightFlush(highValue: Int)                        extends ScoringHand { val ranking = 8 }
 case object RoyalFlush                                          extends ScoringHand { val ranking = 9 }
+case class FiveOfAKind(value: Int)                              extends ScoringHand { val ranking = 10 }
 
