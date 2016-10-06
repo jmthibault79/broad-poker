@@ -43,7 +43,11 @@ class CardTest extends FlatSpec with Matchers {
     }
 
     intercept[Exception] {
-      Card("10H")
+      Card("11H")
+    }
+
+    assertResult("10 of Hearts") {
+      Card("10H").toEnglish
     }
 
     assertResult("9 of Spades") {

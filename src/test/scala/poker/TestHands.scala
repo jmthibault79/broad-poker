@@ -86,7 +86,7 @@ trait TestHands {
   )
 
   val royalFlushCards = Seq(
-    Card("9D"),
+    Card("10D"),
     Card("JD"),
     Card("QD"),
     Card("KD"),

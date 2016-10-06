@@ -5,32 +5,32 @@ case class Card(value: Int, suit: Suit) {
 }
 
 object Card {
-  def ACE = 13
+  def ACE = 14
 
-  def valueInRange(v: Int): Boolean = v >= 2 && v <= 13
+  def numberInRange(v: Int): Boolean = v >= 2 && v <= 10
 
   def strVal(v: Int): String = v match {
-    case 10 => "J"
-    case 11 => "Q"
-    case 12 => "K"
-    case 13 => "A"
-    case value if Card.valueInRange(value) => value.toString
+    case 11 => "J"
+    case 12 => "Q"
+    case 13 => "K"
+    case 14 => "A"
+    case value if Card.numberInRange(value) => value.toString
     case _ => throw new Exception(s"Invalid card value $v")
   }
 
   def apply(s: String): Card = {
-    if (s.length != 2) throw new Exception(s"Invalid card $s")
+    if (s.length < 2 || s.length > 3) throw new Exception(s"Invalid card $s")
 
-    val value = s.head.toString match {
-      case "J" => 10
-      case "Q" => 11
-      case "K" => 12
-      case "A" => 13
-      case v if valueInRange(v.toInt) => v.toInt
-      case _ => throw new Exception(s"Invalid card value ${s.head}")
+    val suit = Suit.suitFromLetter(s.last)
+
+    val value = s.dropRight(1) match {
+      case "J" => 11
+      case "Q" => 12
+      case "K" => 13
+      case "A" => 14
+      case v if numberInRange(v.toInt) => v.toInt
+      case bad => throw new Exception(s"Invalid card value $bad")
     }
-
-    val suit = Suit.suitFromLetter(s.tail.head)
 
     Card(value, suit)
   }

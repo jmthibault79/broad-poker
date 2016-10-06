@@ -53,15 +53,15 @@ class BestHandTest extends FlatSpec with Matchers with TestHands {
       Card("4S")
     )
 
+    // three + Ace kicker, but the final card is arbitrary
     val givenExpected = Set(
       Card("3H"),
       Card("3S"),
       Card("3D"),
-      Card("AH"),
-      Card("QD")
+      Card("AH")
     )
 
-    BestHand.best(givenExample) should contain theSameElementsAs givenExpected
+    BestHand.best(givenExample) should contain allElementsOf givenExpected
   }
 
   it should "handle the edge cases for Straight and Royal Flush" in {
@@ -91,7 +91,7 @@ class BestHandTest extends FlatSpec with Matchers with TestHands {
       Card("5H"),
       Card("7H"),
 
-      Card("9D"),
+      Card("10D"),
       Card("JS"),
       Card("QD"),
       Card("KS"),
@@ -103,11 +103,11 @@ class BestHandTest extends FlatSpec with Matchers with TestHands {
     BestHand.best(trickyStraightFlushCards3) should contain theSameElementsAs trickyStraightFlushCards3.take(5)
 
     val trickyNotRoyalFlushCards = Seq(
-      Card("9D"),
+      Card("10D"),
       Card("JD"),
       Card("QD"),
       Card("KD"),
-      Card("8D"),
+      Card("9D"),
       Card("AH")
     )
 

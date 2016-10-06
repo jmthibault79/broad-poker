@@ -5,7 +5,7 @@ import poker.model._
 
 class ScorerTest extends FlatSpec with Matchers with TestHands {
   "Highest" should "find the highest" in {
-    assertResult(13) {
+    assertResult(14) {
       Scorer.highest(lowPairCards)
     }
 
@@ -15,16 +15,16 @@ class ScorerTest extends FlatSpec with Matchers with TestHands {
   }
 
   "Kicker" should "find the kicker" in {
-    assertResult(12) {
-      Scorer.kicker(lowPairCards, Set(13))
+    assertResult(13) {
+      Scorer.kicker(lowPairCards, Set(14))
     }
 
-    assertResult(12) {
-      Scorer.kicker(lowPairCards, Set(13, 2))
+    assertResult(13) {
+      Scorer.kicker(lowPairCards, Set(14, 2))
     }
 
     assertResult(4) {
-      Scorer.kicker(lowPairCards, Set(13, 2, 12))
+      Scorer.kicker(lowPairCards, Set(14, 2, 13))
     }
   }
 
@@ -33,7 +33,7 @@ class ScorerTest extends FlatSpec with Matchers with TestHands {
 
     assertResult(Map.empty) { Scorer.handOfAKind(lowPairCards.tail) }
 
-    assertResult(Map(2 -> Set(11))) { Scorer.handOfAKind(highPairCards) }
+    assertResult(Map(2 -> Set(12))) { Scorer.handOfAKind(highPairCards) }
 
     assertResult(Map(2 -> Set(4, 5))) { Scorer.handOfAKind(twoPairCards) }
 
@@ -47,7 +47,7 @@ class ScorerTest extends FlatSpec with Matchers with TestHands {
       Scorer.isHandFlush(lowPairCards)
     }
 
-    assertResult(Some(13)) {
+    assertResult(Some(14)) {
       Scorer.isHandFlush(flushCards)
     }
   }
@@ -67,15 +67,15 @@ class ScorerTest extends FlatSpec with Matchers with TestHands {
       Scorer.score(lowPairCards)
     }
 
-    assertResult(Pair(11, 13)) {
+    assertResult(Pair(12, 14)) {
       Scorer.score(highPairCards)
     }
 
-    assertResult(FullHouse(12, 2)) {
+    assertResult(FullHouse(13, 2)) {
       Scorer.score(fullHouseCards1)
     }
 
-    assertResult(FullHouse(2, 12)) {
+    assertResult(FullHouse(2, 13)) {
       Scorer.score(fullHouseCards2)
     }
 
@@ -83,15 +83,15 @@ class ScorerTest extends FlatSpec with Matchers with TestHands {
       Scorer.score(twoPairCards)
     }
 
-    assertResult(FourOfAKind(2, 13)) {
+    assertResult(FourOfAKind(2, 14)) {
       Scorer.score(fourKindCards)
     }
 
-    assertResult(ThreeOfAKind(7, 11)) {
+    assertResult(ThreeOfAKind(7, 12)) {
       Scorer.score(threeKindCards)
     }
 
-    assertResult(Flush(13)) {
+    assertResult(Flush(14)) {
       Scorer.score(flushCards)
     }
 
